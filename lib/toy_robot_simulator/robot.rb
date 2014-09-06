@@ -4,6 +4,7 @@ class Robot
   extend Forwardable
 
   def_delegator :placement, :update!, :place
+  def_delegator :placement, :report
 
   def initialize(args)
     @placement = args[:placement]

@@ -37,4 +37,10 @@ class RobotTest < MiniTest::Unit::TestCase
     @robot.left
     assert_equal new_placement, @robot.send('placement')
   end
+
+  def test_that_it_delegates_reporting
+    @placement.expect(:report, nil)
+    @robot.report
+    @placement.verify
+  end
 end
