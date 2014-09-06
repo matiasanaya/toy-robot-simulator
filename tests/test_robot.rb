@@ -21,4 +21,20 @@ class RobotTest < MiniTest::Unit::TestCase
     @robot.move
     assert_equal adjacent_placement, @robot.send('placement')
   end
+
+  def test_that_it_turns_right
+    new_placement = Object.new
+    @placement.expect(:rotate!, new_placement, [90])
+
+    @robot.right
+    assert_equal new_placement, @robot.send('placement')
+  end
+
+  def test_that_it_turns_left
+    new_placement = Object.new
+    @placement.expect(:rotate!, new_placement, [-90])
+
+    @robot.left
+    assert_equal new_placement, @robot.send('placement')
+  end
 end

@@ -13,6 +13,14 @@ class Robot
     self.placement = placement.adjacent
   end
 
+  def right
+    self.placement = placement.rotate!(90)
+  end
+
+  def left
+    self.placement = placement.rotate!(-90)
+  end
+
   private
 
   attr_accessor :placement
