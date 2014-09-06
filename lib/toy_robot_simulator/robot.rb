@@ -9,7 +9,11 @@ class Robot
     @placement = args[:placement]
   end
 
+  def move
+    self.placement = placement.adjacent
+  end
+
   private
 
-  attr_reader :placement
+  attr_accessor :placement
 end

@@ -13,4 +13,12 @@ class RobotTest < MiniTest::Unit::TestCase
     @robot.place(@_)
     @placement.verify
   end
+
+  def test_that_it_moves
+    adjacent_placement = Object.new
+    @placement.expect(:adjacent, adjacent_placement)
+
+    @robot.move
+    assert_equal adjacent_placement, @robot.send('placement')
+  end
 end
