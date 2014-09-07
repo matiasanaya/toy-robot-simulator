@@ -6,10 +6,13 @@ class PoseTest < MiniTest::Unit::TestCase
   include ReporterInterfaceTest
 
   def setup
-    @x = 0
-    @y = 0
+    @x, @y = 0, 0
     @orientation = Pose::Orientation::EAST
-    @pose = @object = Pose.new(x: @x, y: @y, orientation: @orientation)
+    @pose = @object = Pose.new(
+      x: @x,
+      y: @y,
+      orientation: @orientation
+    )
   end
 
   def test_that_adjacent_returns_a_pose
@@ -21,31 +24,47 @@ class PoseTest < MiniTest::Unit::TestCase
   end
 
   def test_that_knows_adjacent_when_facing_east
-    adjacent_pose_hash = {x: @x + 1, y: @y, orientation: @orientation}
+    adjacent_pose_hash = {
+      x: @x + 1,
+      y: @y,
+      orientation: @orientation
+    }
 
     assert_pose adjacent_pose_hash, @pose.adjacent
   end
 
   def test_that_knows_adjacent_when_facing_north
     orientation = Pose::Orientation::NORTH
-    @pose.send(:orientation=, orientation)
-    adjacent_pose_hash = {x: @x, y: @y + 1, orientation: orientation}
+    @pose.instance_variable_set(:@orientation, orientation)
+    adjacent_pose_hash = {
+      x: @x,
+      y: @y + 1,
+      orientation: orientation
+    }
 
     assert_pose adjacent_pose_hash, @pose.adjacent
   end
 
   def test_that_knows_adjacent_when_facing_west
     orientation = Pose::Orientation::WEST
-    @pose.send(:orientation=, orientation)
-    adjacent_pose_hash = {x: @x - 1, y: @y, orientation: orientation}
+    @pose.instance_variable_set(:@orientation, orientation)
+    adjacent_pose_hash = {
+      x: @x - 1,
+      y: @y,
+      orientation: orientation
+    }
 
     assert_pose adjacent_pose_hash, @pose.adjacent
   end
 
   def test_that_knows_adjacent_when_facing_south
     orientation = Pose::Orientation::SOUTH
-    @pose.send(:orientation=, orientation)
-    adjacent_pose_hash = {x: @x, y: @y - 1, orientation: orientation}
+    @pose.instance_variable_set(:@orientation, orientation)
+    adjacent_pose_hash = {
+      x: @x,
+      y: @y - 1,
+      orientation: orientation
+    }
 
     assert_pose adjacent_pose_hash, @pose.adjacent
   end
@@ -56,14 +75,15 @@ class PoseTest < MiniTest::Unit::TestCase
 
   def test_that_can_rotate_90
     clockwise_orientations = [
-                    Pose::Orientation::NORTH,
-                    Pose::Orientation::EAST,
-                    Pose::Orientation::SOUTH,
-                    Pose::Orientation::WEST,
-                    Pose::Orientation::NORTH
-                  ]
+      Pose::Orientation::NORTH,
+      Pose::Orientation::EAST,
+      Pose::Orientation::SOUTH,
+      Pose::Orientation::WEST,
+      Pose::Orientation::NORTH
+    ]
+
     clockwise_orientations.each_cons(2) do |initial_orientation, rotated_orientation|
-      @pose.send(:orientation=, initial_orientation)
+      @pose.instance_variable_set(:@orientation, initial_orientation)
       rotated_pose_hash = {x: @x, y: @y, orientation: rotated_orientation}
 
       assert_pose rotated_pose_hash, @pose.rotate!(90)
@@ -72,15 +92,20 @@ class PoseTest < MiniTest::Unit::TestCase
 
   def test_that_can_rotate_90_counterclockwise
     counter_clockwise_orientations = [
-                    Pose::Orientation::NORTH,
-                    Pose::Orientation::WEST,
-                    Pose::Orientation::SOUTH,
-                    Pose::Orientation::EAST,
-                    Pose::Orientation::NORTH
-                  ]
+      Pose::Orientation::NORTH,
+      Pose::Orientation::WEST,
+      Pose::Orientation::SOUTH,
+      Pose::Orientation::EAST,
+      Pose::Orientation::NORTH
+    ]
+
     counter_clockwise_orientations.each_cons(2) do |initial_orientation, rotated_orientation|
-      @pose.send(:orientation=, initial_orientation)
-      rotated_pose_hash = {x: @x, y: @y, orientation: rotated_orientation}
+      @pose.instance_variable_set(:@orientation, initial_orientation)
+      rotated_pose_hash = {
+        x: @x,
+        y: @y,
+        orientation: rotated_orientation
+      }
 
       assert_pose rotated_pose_hash, @pose.rotate!(-90)
     end
