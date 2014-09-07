@@ -5,56 +5,77 @@ require 'minitest/autorun'
 class PlacementTest < MiniTest::Unit::TestCase
   include ReporterInterfaceTest
 
+  SimpleDouble = Struct.new(:stub) do
+    def valid_pose?(_)
+      stub.fetch(:valid_pose?)
+    end
+
+    def adjacent
+      stub.fetch(:adjacent)
+    end
+  end
+
   def setup
-    @board = Object.new
-    @pose = Object.new
+    @board = SimpleDouble.new(valid_pose?: true)
+    @pose = SimpleDouble.new
     @placement = @object = Placement.new(board: @board, pose: @pose)
   end
 
-  def test_that_it_updates!
-    @board.define_singleton_method(:valid_pose?) { |_| true }
-    new_pose = Object.new
-    assert_equal new_pose, @placement.update!(new_pose)
+  def test_respond_to_public_interface
+    assert_respond_to @placement, :update
+    assert_respond_to @placement, :advance
+    assert_respond_to @placement, :rotate
   end
 
-  def test_that_update_fails
-    @board.define_singleton_method(:valid_pose?) { |_| false }
+  def test_that_it_might_update
     new_pose = Object.new
-    assert_equal @pose, @placement.update!(new_pose)
+
+    @placement.update(new_pose)
+
+    assert_equal new_pose, @placement.instance_variable_get(:@pose)
   end
 
-  def test_that_might_have_adjacent
+  def test_that_update_might_fail
+    @board[:stub] = { valid_pose?: false }
+
+    @placement.update('invalid_pose')
+
+    assert_equal @pose, @placement.instance_variable_get(:@pose)
+  end
+
+  def test_that_it_might_advance
     adjacent_pose = Object.new
-    @board.define_singleton_method(:valid_pose?) { |_| true }
-    @pose.define_singleton_method(:adjacent) { adjacent_pose }
+    @pose[:stub] = { adjacent: adjacent_pose }
 
-    assert_equal @placement.send('board'), @placement.adjacent.send('board')
-    assert_equal adjacent_pose, @placement.adjacent.send('pose')
+    @placement.advance
+
+    assert_equal adjacent_pose, @placement.instance_variable_get(:@pose)
   end
 
-  def test_that_might_not_have_adjacent
-    @board.define_singleton_method(:valid_pose?) { |_| false }
-    @pose.define_singleton_method(:adjacent) { nil }
+  def test_that_it_might_not_advance
+    @board[:stub] = { valid_pose?: false }
+    @pose[:stub] = { adjacent: 'anything' }
 
-    assert_equal @placement, @placement.adjacent
+    @placement.advance
+
+    assert_equal @pose, @placement.instance_variable_get(:@pose)
   end
 
-  def test_that_it_delegates_rotation
-    @pose = MiniTest::Mock.new
-    @placement = Placement.new(board: @board, pose: @pose)
-    _ = nil
+  def test_that_it_rotates
+    pose = MiniTest::Mock.new
+    placement = Placement.new(pose: pose)
 
-    @pose.expect(:rotate!, nil, [_])
-    @placement.rotate!(_)
-    @pose.verify
+    pose.expect(:rotate, nil, [123])
+    placement.rotate(123)
+    pose.verify
   end
 
-  def test_that_it_delegates_reporting
-    @pose = MiniTest::Mock.new
-    @placement = Placement.new(board: @board, pose: @pose)
+  def test_that_it_reports
+    pose = MiniTest::Mock.new
+    placement = Placement.new(pose: pose)
 
-    @pose.expect(:report, nil)
-    @placement.report
-    @pose.verify
+    pose.expect(:report, nil)
+    placement.report
+    pose.verify
   end
 end
