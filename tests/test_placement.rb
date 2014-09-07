@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/placement.rb'
+require './lib/toy_robot_simulator/placement'
 require './tests/test_reporter_interface'
 require 'minitest/autorun'
 

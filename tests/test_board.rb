@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/board.rb'
+require './lib/toy_robot_simulator/board'
 require 'minitest/autorun'
 
 class BoardTest < MiniTest::Unit::TestCase
