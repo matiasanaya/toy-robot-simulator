@@ -3,23 +3,20 @@ require 'forwardable'
 class Robot
   extend Forwardable
 
-  def_delegator :placement, :update!, :place
   def_delegator :placement, :report
+  def_delegator :placement, :update, :place
+  def_delegator :placement, :advance, :move
 
   def initialize(args)
     @placement = args[:placement]
   end
 
-  def move
-    self.placement = placement.adjacent
-  end
-
   def right
-    self.placement = placement.rotate!(90)
+    placement.rotate(90)
   end
 
   def left
-    self.placement = placement.rotate!(-90)
+    placement.rotate(-90)
   end
 
   private
