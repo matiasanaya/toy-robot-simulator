@@ -6,7 +6,7 @@ class RobotTest < MiniTest::Unit::TestCase
   include ReporterInterfaceTest
 
   def setup
-    @observer = MiniTest::Mock.new
+    @observer = MiniTest::Mock.new.expect(:on_board?, true)
     @robot = @object = Robot.new(placement: @observer)
   end
 
@@ -50,5 +50,17 @@ class RobotTest < MiniTest::Unit::TestCase
     @observer.expect(:report, nil)
     @robot.report
     @observer.verify
+  end
+
+  def test_that_it_ignores_commands_if_unplaced
+    observer = MiniTest::Mock.new
+    @robot.instance_variable_set(:@placement, observer)
+
+    [:place, :move, :right, :left, :report].each do |command|
+      observer.expect(:on_board?, false)
+      @robot.send(command)
+    end
+
+    observer.verify
   end
 end
