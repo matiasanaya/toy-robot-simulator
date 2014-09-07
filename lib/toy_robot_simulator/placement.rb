@@ -3,7 +3,8 @@ require 'forwardable'
 class Placement
   extend Forwardable
 
-  def_delegators :pose, :rotate, :report
+  def_delegator :pose, :report
+  def_delegator :pose, :rotate!, :rotate
 
   def initialize(args)
     @board = args[:board]

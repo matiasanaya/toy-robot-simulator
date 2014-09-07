@@ -65,7 +65,7 @@ class PlacementTest < MiniTest::Unit::TestCase
     pose = MiniTest::Mock.new
     placement = Placement.new(pose: pose)
 
-    pose.expect(:rotate, nil, [123])
+    pose.expect(:rotate!, nil, [123])
     placement.rotate(123)
     pose.verify
   end
