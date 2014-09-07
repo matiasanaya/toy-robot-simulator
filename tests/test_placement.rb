@@ -25,6 +25,17 @@ class PlacementTest < MiniTest::Unit::TestCase
     assert_respond_to @placement, :update
     assert_respond_to @placement, :advance
     assert_respond_to @placement, :rotate
+    assert_respond_to @placement, :on_board?
+  end
+
+  def test_that_it_might_be_on_board
+    assert @placement.on_board?
+  end
+
+  def test_that_it_might_not_be_on_board
+    @board[:stub] = { valid_pose?: false }
+
+    refute @placement.on_board?
   end
 
   def test_that_it_might_update

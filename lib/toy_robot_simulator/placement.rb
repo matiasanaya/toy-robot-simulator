@@ -11,6 +11,10 @@ class Placement
     @pose = args[:pose]
   end
 
+  def on_board?
+    board && pose && board.valid_pose?(pose)
+  end
+
   def update(a_new_pose)
     if board.valid_pose?(a_new_pose)
       self.pose = a_new_pose
