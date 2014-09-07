@@ -6,7 +6,7 @@ class PoseTest < MiniTest::Unit::TestCase
   include ReporterInterfaceTest
 
   def setup
-    @x, @y = 0, 0
+    @x, @y = 0, 1
     @orientation = Pose::Orientation::EAST
     @pose = @object = Pose.new(
       x: @x,
@@ -69,10 +69,6 @@ class PoseTest < MiniTest::Unit::TestCase
     assert_pose adjacent_pose_hash, @pose.adjacent
   end
 
-  def test_that_rotating_return_the_reciever
-    assert_equal @pose, @pose.rotate!(90)
-  end
-
   def test_that_can_rotate_90
     clockwise_orientations = [
       Pose::Orientation::NORTH,
@@ -86,7 +82,9 @@ class PoseTest < MiniTest::Unit::TestCase
       @pose.instance_variable_set(:@orientation, initial_orientation)
       rotated_pose_hash = {x: @x, y: @y, orientation: rotated_orientation}
 
-      assert_pose rotated_pose_hash, @pose.rotate!(90)
+      @pose.rotate!(90)
+
+      assert_pose rotated_pose_hash, @pose
     end
   end
 
@@ -107,7 +105,9 @@ class PoseTest < MiniTest::Unit::TestCase
         orientation: rotated_orientation
       }
 
-      assert_pose rotated_pose_hash, @pose.rotate!(-90)
+      @pose.rotate!(-90)
+
+      assert_pose rotated_pose_hash, @pose
     end
   end
 
