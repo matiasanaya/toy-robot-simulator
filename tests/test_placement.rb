@@ -1,11 +1,14 @@
 require './lib/toy_robot_simulator/placement.rb'
+require './tests/test_reporter_interface'
 require 'minitest/autorun'
 
 class PlacementTest < MiniTest::Unit::TestCase
+  include ReporterInterfaceTest
+
   def setup
     @board = Object.new
     @pose = Object.new
-    @placement = Placement.new(board: @board, pose: @pose)
+    @placement = @object = Placement.new(board: @board, pose: @pose)
   end
 
   def test_that_it_updates!

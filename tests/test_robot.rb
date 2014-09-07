@@ -1,10 +1,13 @@
 require './lib/toy_robot_simulator/robot.rb'
+require './tests/test_reporter_interface'
 require 'minitest/autorun'
 
 class RobotTest < MiniTest::Unit::TestCase
+  include ReporterInterfaceTest
+
   def setup
     @placement = MiniTest::Mock.new
-    @robot = Robot.new(placement: @placement)
+    @robot = @object = Robot.new(placement: @placement)
     @_ = Object.new
   end
 

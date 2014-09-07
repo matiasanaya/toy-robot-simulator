@@ -1,12 +1,15 @@
 require './lib/toy_robot_simulator/pose.rb'
+require './tests/test_reporter_interface'
 require 'minitest/autorun'
 
 class PoseTest < MiniTest::Unit::TestCase
+  include ReporterInterfaceTest
+
   def setup
     @x = 0
     @y = 0
     @orientation = Pose::Orientation::EAST
-    @pose = Pose.new(x: @x, y: @y, orientation: @orientation)
+    @pose = @object = Pose.new(x: @x, y: @y, orientation: @orientation)
   end
 
   def test_that_adjacent_returns_a_pose
