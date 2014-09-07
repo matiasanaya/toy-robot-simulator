@@ -6,44 +6,42 @@ class RobotTest < MiniTest::Unit::TestCase
   include ReporterInterfaceTest
 
   def setup
-    @placement = MiniTest::Mock.new
-    @robot = @object = Robot.new(placement: @placement)
-    @_ = Object.new
+    @observer = MiniTest::Mock.new
+    @robot = @object = Robot.new(placement: @observer)
   end
 
-  def test_that_it_delegates_placing
-    @placement.expect(:update!, nil, [@_])
-    @robot.place(@_)
-    @placement.verify
+  def teardown
+    @observer = nil
+    @robot = nil
+  end
+
+  def test_that_it_places
+    @observer.expect(:update, nil, [nil])
+    @robot.place(nil)
+    @observer.verify
   end
 
   def test_that_it_moves
-    adjacent_placement = Object.new
-    @placement.expect(:adjacent, adjacent_placement)
-
+    @observer.expect(:advance, nil)
     @robot.move
-    assert_equal adjacent_placement, @robot.send('placement')
+    @observer.verify
   end
 
   def test_that_it_turns_right
-    new_placement = Object.new
-    @placement.expect(:rotate!, new_placement, [90])
-
+    @observer.expect(:rotate, nil, [90])
     @robot.right
-    assert_equal new_placement, @robot.send('placement')
+    @observer.verify
   end
 
   def test_that_it_turns_left
-    new_placement = Object.new
-    @placement.expect(:rotate!, new_placement, [-90])
-
+    @observer.expect(:rotate, nil, [-90])
     @robot.left
-    assert_equal new_placement, @robot.send('placement')
+    @observer.verify
   end
 
-  def test_that_it_delegates_reporting
-    @placement.expect(:report, nil)
+  def test_that_it_reports
+    @observer.expect(:report, nil)
     @robot.report
-    @placement.verify
+    @observer.verify
   end
 end
