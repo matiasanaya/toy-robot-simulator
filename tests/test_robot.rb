@@ -15,6 +15,13 @@ class RobotTest < MiniTest::Unit::TestCase
     @robot = nil
   end
 
+  def test_respond_to_public_interface
+    assert_respond_to @robot, :place
+    assert_respond_to @robot, :move
+    assert_respond_to @robot, :right
+    assert_respond_to @robot, :left
+  end
+
   def test_that_it_places
     @observer.expect(:update, nil, [nil])
     @robot.place(nil)
