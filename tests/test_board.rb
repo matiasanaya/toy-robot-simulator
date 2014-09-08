@@ -19,7 +19,7 @@ class BoardTest < MiniTest::Unit::TestCase
     [[-1,0], [0,-1], [6,0], [0,6]].each do |out_of_range|
       pose_double = PoseDouble.new(*out_of_range)
 
-      assert !@board.valid_pose?(pose_double), "Pose #{pose_double} should be invalid"
+      refute @board.valid_pose?(pose_double), "Pose #{pose_double} should be invalid"
     end
   end
 
