@@ -15,6 +15,19 @@ class PoseTest < MiniTest::Unit::TestCase
     )
   end
 
+  def test_public_interface
+    assert_respond_to @pose, :adjacent
+    assert_respond_to @pose, :rotate!
+    assert_respond_to @pose, :report
+    assert_respond_to @pose, :x
+    assert_respond_to @pose, :y
+    assert_respond_to @pose, :orientation
+  end
+
+  def test_it_can_be_initialized_without_arguments
+    assert Pose.new
+  end
+
   def test_that_adjacent_returns_a_pose
     assert_instance_of Pose, @pose.adjacent
   end
