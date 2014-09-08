@@ -12,7 +12,7 @@ class Placement
   end
 
   def on_board?
-    board && pose && board.valid_pose?(pose)
+    board && board.valid_pose?(pose)
   end
 
   def update(a_new_pose)
