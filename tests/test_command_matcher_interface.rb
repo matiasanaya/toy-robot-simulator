@@ -19,8 +19,8 @@ module CommandMatcherInterfaceTest
   end
 
   def test_that_response_knows_args
-    assert_equal @object.send(:extract_args, @object_valid_str),
-                 @object.build_with_match(@object_valid_str).args
+    assert_respond_to @object.build_with_match(@object_valid_str),
+                      :args
   end
 
   def test_that_response_is_nil
