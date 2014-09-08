@@ -1,3 +1,6 @@
+require './lib/toy_robot_simulator/command/matcher/base'
+require './lib/toy_robot_simulator/command/matcher/place'
+
 module Command
   module Matcher
     def self.parse(string)
