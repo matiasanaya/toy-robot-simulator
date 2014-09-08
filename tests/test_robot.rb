@@ -23,9 +23,11 @@ class RobotTest < MiniTest::Unit::TestCase
   end
 
   def test_that_it_places
-    @observer.expect(:update, nil, [nil])
+    placement = MiniTest::Mock.new.expect(:update, nil, [nil])
+    @robot.instance_variable_set(:@placement, placement)
+
     @robot.place(nil)
-    @observer.verify
+    placement.verify
   end
 
   def test_that_it_moves
@@ -56,7 +58,7 @@ class RobotTest < MiniTest::Unit::TestCase
     observer = MiniTest::Mock.new
     @robot.instance_variable_set(:@placement, observer)
 
-    [:place, :move, :right, :left, :report].each do |command|
+    [:move, :right, :left, :report].each do |command|
       observer.expect(:on_board?, false)
       @robot.send(command)
     end

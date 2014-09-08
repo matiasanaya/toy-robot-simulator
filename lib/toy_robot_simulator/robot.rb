@@ -8,7 +8,7 @@ class Robot
   end
 
   def place(*args)
-    with_placement { placement.update(*args) }
+    placement.update(*args)
   end
 
   def move
