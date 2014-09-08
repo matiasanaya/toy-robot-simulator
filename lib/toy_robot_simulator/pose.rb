@@ -6,7 +6,9 @@ class Pose
     SOUTH = :south
   end
 
-  def initialize(args)
+  attr_accessor :x, :y, :orientation
+
+  def initialize(args = {})
     @x = args[:x]
     @y = args[:y]
     @orientation = args[:orientation]
@@ -30,8 +32,6 @@ class Pose
   end
 
   private
-
-  attr_accessor :x, :y, :orientation
 
   def step_orientation(by = 1)
     orientations = [
