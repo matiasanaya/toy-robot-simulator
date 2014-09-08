@@ -22,4 +22,8 @@ class BoardTest < MiniTest::Unit::TestCase
       assert !@board.valid_pose?(pose_double), "Pose #{pose_double} should be invalid"
     end
   end
+
+  def test_that_a_nil_pose_is_invalid
+    refute @board.valid_pose?(nil)
+  end
 end
