@@ -5,3 +5,17 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['tests/test*.rb']
   t.verbose = true
 end
+
+Rake::TestTask.new do |t|
+  t.libs << "tests"
+  t.name = "test:integration"
+  t.test_files = FileList['tests/integration/test*.rb']
+  t.verbose = true
+end
+
+Rake::TestTask.new do |t|
+  t.libs << "tests"
+  t.name = "test:all"
+  t.test_files = FileList['tests/**/test*.rb']
+  t.verbose = true
+end
