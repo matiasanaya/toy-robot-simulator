@@ -22,7 +22,7 @@ class ViewTest < MiniTest::Unit::TestCase
   end
 
   def test_that_it_reports
-    write = '(X,Y) FACING'
+    write = 'X,Y,FACING'
     @output.expect :puts, nil, [write]
     @view.report
     @output.verify

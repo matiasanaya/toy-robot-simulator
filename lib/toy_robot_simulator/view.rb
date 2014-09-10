@@ -7,7 +7,7 @@ View = Struct.new(:args) do
   private
 
   def report_string(report)
-    "(#{report[:x]},#{report[:y]}) #{report[:orientation].upcase}"
+    "#{report[:x]},#{report[:y]},#{report[:orientation].upcase}"
   end
 
   def robot
