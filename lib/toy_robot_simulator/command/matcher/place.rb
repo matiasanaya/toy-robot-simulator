@@ -1,6 +1,5 @@
 require './lib/toy_robot_simulator/command/matcher/base'
 require './lib/toy_robot_simulator/pose'
-require 'ostruct'
 
 module Command
   module Matcher
@@ -20,7 +19,7 @@ module Command
     place_args_extractor = lambda do |raw_command|
       x, y, f = raw_command.split.pop.split(',')
 
-      OpenStruct.new(
+      Pose.new(
         x: x.to_i,
         y: y.to_i,
         orientation: constantize_orientation.call(f)
