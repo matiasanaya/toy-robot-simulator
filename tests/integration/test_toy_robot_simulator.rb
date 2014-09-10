@@ -1,6 +1,10 @@
 require 'minitest/autorun'
 
 class ToyRobotSimulatorTest < MiniTest::Unit::TestCase
+  def test_that_it_is_executable
+    assert `bin/toy_robot_simulator < data/example_input_a.txt`
+  end
+
   def test_example_input_a
     output = `ruby bin/toy_robot_simulator < data/example_input_a.txt`
     assert_match /\A0,1,NORTH\n\z/, output
