@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'factory'
 require_relative 'command/matcher/matcher'
 
@@ -28,21 +27,10 @@ class Application
     case raw_input
     when /\AR(EPORT_DEBUG)*\z/
       puts controller.instance_variable_get(:@robot).inspect
-    when /\AD(EBUG)*\z/
-      console
     when /\AE(XIT)*\z/
       puts 'Have a nice day, bye :)'
       puts '...'
       exit(false)
     end
-  end
-
-  def console
-    # Application debug session
-    #
-    # Call `self` to see
-    # state.
-
-    binding.pry
   end
 end
