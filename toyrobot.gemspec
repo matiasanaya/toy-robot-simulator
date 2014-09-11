@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
-  spec.name          = 'toy_robot'
-  spec.version       = '0.0.2'
+  spec.name          = 'toyrobot'
+  spec.version       = '0.0.1'
   spec.authors       = ['Matias Anaya']
   spec.email         = ['matiasanaya@gmail.com']
   spec.summary       = %q{A toy robot simulator}
@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'UNLICENSE'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = ['toy_robot']
+  spec.executables   = ['toyrobot']
   spec.test_files    = spec.files.grep(%r{^(test)/})
   spec.require_paths = ['lib']
 

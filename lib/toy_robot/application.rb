@@ -3,8 +3,8 @@ require_relative 'command/parser'
 
 module ToyRobot
   class Application
-    def initialize(argv = [])
-      @input = $stdin
+    def initialize(argv = [], args = {})
+      @input = args[:input] || $stdin
       @parser = Command::Parser
       @controller = Factory.create(:controller)
     end
