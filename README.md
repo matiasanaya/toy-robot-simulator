@@ -8,18 +8,18 @@ A simulation of a toy robot moving on a square tabletop.
 
 via RubyGems:
 
-    $ gem install toy_robot
+    $ gem install toyrobot
 
 
 ## Usage
 
 Start the simulator in interactive mode:
 
-    $ toy_robot
+    $ toyrobot
 
 Or pipe it a file with commands:
 
-    $ toy_robot < path/to/file
+    $ toyrobot < path/to/file
 
 An example file with commands:
 
@@ -113,7 +113,7 @@ Development dependancies:
 
 To install them along the gem:
 
-    $ gem install --dev toy_robot
+    $ gem install --dev toyrobot
 
 ### Compatible environments
 
