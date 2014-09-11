@@ -1,3 +1,5 @@
-module Command
-  Base = Struct.new(:token, :args)
+module ToyRobot
+  module Command
+    Base = Struct.new(:token, :args)
+  end
 end

@@ -5,77 +5,79 @@ require_relative 'board'
 require_relative 'pose'
 require_relative 'view'
 
-module Factory
-  module_function
-
-  def create(identifier, opts = {})
-    case identifier
-    when :controller
-      RobotControllerFactory.create(opts)
-    end
-  end
-
-  module RobotControllerFactory
+module ToyRobot
+  module Factory
     module_function
 
-    def create(opts = {})
-      robot = opts[:robot] || RobotFactory.create
-      view = opts[:view] || ViewFactory.create(robot: robot)
-
-      ::RobotController.new(
-        robot: robot,
-        view: view
-      )
+    def create(identifier, opts = {})
+      case identifier
+      when :controller
+        RobotControllerFactory.create(opts)
+      end
     end
-  end
 
-  module ViewFactory
-    module_function
+    module RobotControllerFactory
+      module_function
 
-    def create(opts = {})
-      robot = opts[:robot] || RobotFactory.create
-      output = opts[:output] || $stdout
+      def create(opts = {})
+        robot = opts[:robot] || RobotFactory.create
+        view = opts[:view] || ViewFactory.create(robot: robot)
 
-      ::View.new(
-        robot: robot,
-        output: output
-      )
+        ToyRobot::RobotController.new(
+          robot: robot,
+          view: view
+        )
+      end
     end
-  end
 
-  module RobotFactory
-    module_function
+    module ViewFactory
+      module_function
 
-    def create(opts = {})
-      placement = opts[:placement] || PlacementFactory.create
+      def create(opts = {})
+        robot = opts[:robot] || RobotFactory.create
+        output = opts[:output] || $stdout
 
-      ::Robot.new(
-        placement: placement
-      )
+        ToyRobot::View.new(
+          robot: robot,
+          output: output
+        )
+      end
     end
-  end
 
-  module PlacementFactory
-    module_function
+    module RobotFactory
+      module_function
 
-    def create(opts = {})
-      board = opts[:board] || BoardFactory.create
-      pose = opts[:pose] || ::Pose.new
-      ::Placement.new(
-        board: board,
-        pose: pose
-      )
+      def create(opts = {})
+        placement = opts[:placement] || PlacementFactory.create
+
+        ToyRobot::Robot.new(
+          placement: placement
+        )
+      end
     end
-  end
 
-  module BoardFactory
-    module_function
+    module PlacementFactory
+      module_function
 
-    def create(opts = {})
-      x = opts[:x] || 5
-      y = opts[:y] || 5
+      def create(opts = {})
+        board = opts[:board] || BoardFactory.create
+        pose = opts[:pose] || ToyRobot::Pose.new
+        ToyRobot::Placement.new(
+          board: board,
+          pose: pose
+        )
+      end
+    end
 
-      ::Board.new(x, y)
+    module BoardFactory
+      module_function
+
+      def create(opts = {})
+        x = opts[:x] || 5
+        y = opts[:y] || 5
+
+        ToyRobot::Board.new(x, y)
+      end
     end
   end
 end

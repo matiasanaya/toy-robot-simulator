@@ -2,4 +2,4 @@
 
 require_relative '../lib/toy_robot_simulator'
 
-Application.new(ARGV).run
+ToyRobot::Application.new(ARGV).run

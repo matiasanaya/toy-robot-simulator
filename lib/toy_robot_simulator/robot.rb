@@ -1,39 +1,41 @@
 require 'forwardable'
 
-class Robot
-  extend Forwardable
+module ToyRobot
+  class Robot
+    extend Forwardable
 
-  def initialize(args)
-    @placement = args[:placement]
-  end
+    def initialize(args)
+      @placement = args[:placement]
+    end
 
-  def place(*args)
-    placement.update(*args)
-  end
+    def place(*args)
+      placement.update(*args)
+    end
 
-  def move
-    with_placement { placement.advance }
-  end
+    def move
+      with_placement { placement.advance }
+    end
 
-  def right
-    with_placement { placement.rotate(90) }
-  end
+    def right
+      with_placement { placement.rotate(90) }
+    end
 
-  def left
-    with_placement { placement.rotate(-90) }
-  end
+    def left
+      with_placement { placement.rotate(-90) }
+    end
 
-  def report
-    with_placement { placement.report }
-  end
+    def report
+      with_placement { placement.report }
+    end
 
-  private
+    private
 
-  attr_accessor :placement
+    attr_accessor :placement
 
-  def with_placement
-    if placement.on_board?
-      yield
+    def with_placement
+      if placement.on_board?
+        yield
+      end
     end
   end
 end
