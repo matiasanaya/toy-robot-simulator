@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 
 module ToyRobot
-  class ToyRobotSimulatorTest < MiniTest::Unit::TestCase
+  class ToyRobotTest < MiniTest::Unit::TestCase
     def test_that_it_is_executable
       assert `bin/toy_robot < data/example_input_a.txt`
     end
