@@ -1,7 +1,8 @@
-require_relative '../command'
+require_relative '../token'
+require_relative '../base'
 
 module Command
-  module Matcher
+  module Parser
     class Base
       def initialize(args)
         @regex = args[:regex]

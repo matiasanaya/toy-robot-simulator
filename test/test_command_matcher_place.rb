@@ -1,4 +1,4 @@
-require_relative '../lib/toy_robot_simulator/command/matcher/place'
+require_relative '../lib/toy_robot_simulator/command/parser/place'
 require_relative 'test_command_matcher_interface'
 require 'minitest/autorun'
 
@@ -6,7 +6,7 @@ class CommandMatcherPlaceTest < MiniTest::Unit::TestCase
   include CommandMatcherInterfaceTest
 
   def setup
-    @object = Command::Matcher::Place
+    @object = Command::Parser::Place
     @object_token = Command::Token::PLACE
     @object_valid_str = 'PLACE 0,0,NORTH'
     @object_invalid_strs = [

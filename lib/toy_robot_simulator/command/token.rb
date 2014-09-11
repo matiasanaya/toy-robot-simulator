@@ -6,6 +6,4 @@ module Command
     LEFT = :LEFT
     REPORT = :REPORT
   end
-
-  Base = Struct.new(:token, :args)
 end

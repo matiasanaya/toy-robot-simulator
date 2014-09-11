@@ -1,10 +1,10 @@
 require_relative 'factory'
-require_relative 'command/matcher/matcher'
+require_relative 'command/parser'
 
 class Application
   def initialize(argv = [])
     @input = $stdin
-    @parser = Command::Matcher
+    @parser = Command::Parser
     @controller = Factory.create(:controller)
   end
 

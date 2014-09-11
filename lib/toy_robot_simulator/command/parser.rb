@@ -1,8 +1,8 @@
-require_relative 'base'
-require_relative 'place'
+require_relative 'parser/base'
+require_relative 'parser/place'
 
 module Command
-  module Matcher
+  module Parser
     def self.parse(string)
       all.each do |matcher|
         command = matcher.build_with_match(string)

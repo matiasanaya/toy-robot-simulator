@@ -1,4 +1,4 @@
-require_relative 'command/command'
+require_relative 'command/token'
 require 'forwardable'
 
 class RobotController

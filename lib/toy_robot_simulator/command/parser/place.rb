@@ -2,7 +2,7 @@ require_relative 'base'
 require_relative '../../pose'
 
 module Command
-  module Matcher
+  module Parser
     constantize_orientation = lambda do |string|
       case string
       when 'EAST'
