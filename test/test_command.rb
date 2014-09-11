@@ -1,4 +1,4 @@
-require_relative '../lib/toy_robot_simulator/command/token'
+require_relative '../lib/toy_robot/command/token'
 require 'minitest/autorun'
 
 module ToyRobot

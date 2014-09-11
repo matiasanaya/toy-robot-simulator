@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/toy_robot_simulator'
+require_relative '../lib/toy_robot'
 
 ToyRobot::Application.new(ARGV).run

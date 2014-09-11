@@ -1,4 +1,4 @@
-require_relative '../lib/toy_robot_simulator/command/parser'
+require_relative '../lib/toy_robot/command/parser'
 require 'minitest/autorun'
 
 module ToyRobot

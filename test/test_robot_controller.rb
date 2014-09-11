@@ -1,4 +1,4 @@
-require_relative '../lib/toy_robot_simulator/robot_controller'
+require_relative '../lib/toy_robot/robot_controller'
 require 'minitest/autorun'
 
 module ToyRobot

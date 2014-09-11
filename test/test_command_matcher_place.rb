@@ -1,4 +1,4 @@
-require_relative '../lib/toy_robot_simulator/command/parser/place'
+require_relative '../lib/toy_robot/command/parser/place'
 require_relative 'test_command_matcher_interface'
 require 'minitest/autorun'
 

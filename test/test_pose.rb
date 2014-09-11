@@ -1,4 +1,4 @@
-require_relative '../lib/toy_robot_simulator/pose'
+require_relative '../lib/toy_robot/pose'
 require_relative 'test_reporter_interface'
 require 'minitest/autorun'
 
