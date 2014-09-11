@@ -1,5 +1,5 @@
 require './lib/toy_robot_simulator/pose'
-require './tests/test_reporter_interface'
+require_relative 'test_reporter_interface'
 require 'minitest/autorun'
 
 class PoseTest < MiniTest::Unit::TestCase

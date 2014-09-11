@@ -1,5 +1,5 @@
 require './lib/toy_robot_simulator/command/matcher/base'
-require './tests/test_command_matcher_interface'
+require_relative 'test_command_matcher_interface'
 require 'minitest/autorun'
 
 class CommandMatcherReportTest < MiniTest::Unit::TestCase

@@ -1,5 +1,5 @@
 require './lib/toy_robot_simulator/robot'
-require './tests/test_reporter_interface'
+require_relative 'test_reporter_interface'
 require 'minitest/autorun'
 
 class RobotTest < MiniTest::Unit::TestCase
