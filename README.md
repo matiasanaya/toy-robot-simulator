@@ -8,7 +8,7 @@ A simulation of a toy robot moving on a square tabletop.
 
 via RubyGems:
 
-    $ gem install toy_robot --pre
+    $ gem install toy_robot
 
 
 ## Usage
@@ -113,7 +113,7 @@ Development dependancies:
 
 To install them along the gem:
 
-    $ gem install --dev toy_robot --pre
+    $ gem install --dev toy_robot
 
 ### Compatible environments
 

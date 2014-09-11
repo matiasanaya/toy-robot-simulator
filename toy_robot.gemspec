@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'toy_robot'
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.2'
   spec.authors       = ['Matias Anaya']
   spec.email         = ['matiasanaya@gmail.com']
   spec.summary       = %q{A toy robot simulator}
@@ -16,5 +16,5 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '~> 2.1'
 
   spec.add_development_dependency 'rake', '~> 10.3'
-  spec.add_development_dependency 'minitest', '~> 5.4'
+  spec.add_development_dependency 'minitest', '~> 4.7', '>= 4.7.5'
 end
