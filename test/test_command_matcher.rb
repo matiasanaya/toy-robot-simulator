@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/command/matcher/matcher'
+require_relative '../lib/toy_robot_simulator/command/matcher/matcher'
 require 'minitest/autorun'
 
 class CommandMatcherTest < MiniTest::Unit::TestCase

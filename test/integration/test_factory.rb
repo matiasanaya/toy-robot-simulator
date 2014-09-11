@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/factory'
+require_relative '../../lib/toy_robot_simulator/factory'
 require 'minitest/autorun'
 
 class FactoryTest < MiniTest::Unit::TestCase

@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/view'
+require_relative '../lib/toy_robot_simulator/view'
 require 'minitest/autorun'
 
 class ViewTest < MiniTest::Unit::TestCase

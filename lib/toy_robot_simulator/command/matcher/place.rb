@@ -1,5 +1,5 @@
-require './lib/toy_robot_simulator/command/matcher/base'
-require './lib/toy_robot_simulator/pose'
+require_relative 'base'
+require_relative '../../pose'
 
 module Command
   module Matcher

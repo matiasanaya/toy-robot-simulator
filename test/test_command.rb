@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/command/command'
+require_relative '../lib/toy_robot_simulator/command/command'
 require 'minitest/autorun'
 
 class CommandTest < MiniTest::Unit::TestCase

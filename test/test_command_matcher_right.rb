@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/command/matcher/base'
+require_relative '../lib/toy_robot_simulator/command/matcher/base'
 require_relative 'test_command_matcher_interface'
 require 'minitest/autorun'
 

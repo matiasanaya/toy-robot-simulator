@@ -1,4 +1,4 @@
-require './lib/toy_robot_simulator/command/command'
+require_relative '../command'
 
 module Command
   module Matcher
