@@ -1,31 +1,28 @@
-require_relative 'command/token'
-require 'forwardable'
-
 module ToyRobot
   class RobotController
-    extend Forwardable
-
-    def_delegators :robot, :place, :move, :left, :right
-    def_delegator :view, :report
-
     def initialize(args)
       @robot = args[:robot]
       @view = args[:view]
     end
 
-    def input(command)
-      case command.token
-      when Command::Token::PLACE
-        place(command.args)
-      when Command::Token::MOVE
-        move
-      when Command::Token::RIGHT
-        right
-      when Command::Token::LEFT
-        left
-      when Command::Token::REPORT
-        report
-      end
+    def place(*args)
+      robot.place(*args)
+    end
+
+    def move(*_)
+      robot.move
+    end
+
+    def left(*_)
+      robot.left
+    end
+
+    def right(*_)
+      robot.right
+    end
+
+    def report(*_)
+      view.report
     end
 
     private

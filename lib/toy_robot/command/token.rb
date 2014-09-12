@@ -1,11 +1,11 @@
 module ToyRobot
   module Command
     module Token
-      PLACE = :PLACE
-      MOVE = :MOVE
-      RIGHT = :RIGHT
-      LEFT = :LEFT
-      REPORT = :REPORT
+      PLACE = :place
+      MOVE = :move
+      RIGHT = :right
+      LEFT = :left
+      REPORT = :report
     end
   end
 end

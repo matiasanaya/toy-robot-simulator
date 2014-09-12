@@ -16,7 +16,7 @@ module ToyRobot
         raw_input.chomp!
         debug(raw_input)
         command = parser.parse(raw_input)
-        controller.input(command) if command
+        controller.send(command.token, command.args) if command
       end
     end
 
