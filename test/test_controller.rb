@@ -1,26 +1,26 @@
-require_relative '../lib/toy_robot/robot_controller'
+require_relative '../lib/toy_robot/controller'
 require 'minitest/autorun'
 
 module ToyRobot
-  class RobotControllerTest < MiniTest::Unit::TestCase
+  class ControllerTest < MiniTest::Unit::TestCase
     CommandDouble = Struct.new(:token, :args)
 
     def setup
       @command_double = CommandDouble.new(nil, nil)
       @robot = MiniTest::Mock.new
       @view = MiniTest::Mock.new
-      @robot_controller = RobotController.new(
+      @controller = Controller.new(
         robot: @robot,
         view: @view
       )
     end
 
     def test_respond_to_public_interface
-      assert_respond_to @robot_controller, :place
-      assert_respond_to @robot_controller, :move
-      assert_respond_to @robot_controller, :right
-      assert_respond_to @robot_controller, :left
-      assert_respond_to @robot_controller, :report
+      assert_respond_to @controller, :place
+      assert_respond_to @controller, :move
+      assert_respond_to @controller, :right
+      assert_respond_to @controller, :left
+      assert_respond_to @controller, :report
     end
 
     def test_it_delegates_a_place_command_to_robot
@@ -29,7 +29,7 @@ module ToyRobot
       @command_double.args = args
 
       @robot.expect(:place, nil, [args])
-      @robot_controller.send(@command_double.token, @command_double.args)
+      @controller.send(@command_double.token, @command_double.args)
       @robot.verify
     end
 
@@ -37,7 +37,7 @@ module ToyRobot
       @command_double.token = :move
 
       @robot.expect(:move, nil)
-      @robot_controller.send(@command_double.token, @command_double.args)
+      @controller.send(@command_double.token, @command_double.args)
       @robot.verify
     end
 
@@ -45,7 +45,7 @@ module ToyRobot
       @command_double.token = :left
 
       @robot.expect(:left, nil)
-      @robot_controller.send(@command_double.token, @command_double.args)
+      @controller.send(@command_double.token, @command_double.args)
       @robot.verify
     end
 
@@ -53,7 +53,7 @@ module ToyRobot
       @command_double.token = :right
 
       @robot.expect(:right, nil)
-      @robot_controller.send(@command_double.token, @command_double.args)
+      @controller.send(@command_double.token, @command_double.args)
       @robot.verify
     end
 
@@ -61,7 +61,7 @@ module ToyRobot
       @command_double.token = :report
 
       @view.expect(:report, nil)
-      @robot_controller.send(@command_double.token, @command_double.args)
+      @controller.send(@command_double.token, @command_double.args)
       @view.verify
     end
   end

@@ -11,8 +11,8 @@ module ToyRobot
       assert_respond_to @object, :create
     end
 
-    def test_that_create_returns_a_robot_controller
-      assert_instance_of RobotController, @object.create(:controller)
+    def test_that_create_returns_a_controller
+      assert_instance_of Controller, @object.create(:controller)
     end
   end
 end

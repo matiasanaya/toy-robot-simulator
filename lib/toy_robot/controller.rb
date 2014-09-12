@@ -1,5 +1,5 @@
 module ToyRobot
-  class RobotController
+  class Controller
     def initialize(args)
       @robot = args[:robot]
       @view = args[:view]

@@ -1,4 +1,4 @@
-require_relative 'robot_controller'
+require_relative 'controller'
 require_relative 'robot'
 require_relative 'board'
 require_relative 'pose'
@@ -11,18 +11,18 @@ module ToyRobot
     def create(identifier, opts = {})
       case identifier
       when :controller
-        RobotControllerFactory.create(opts)
+        ControllerFactory.create(opts)
       end
     end
 
-    module RobotControllerFactory
+    module ControllerFactory
       module_function
 
       def create(opts = {})
         robot = opts[:robot] || RobotFactory.create
         view = opts[:view] || ViewFactory.create(robot: robot)
 
-        ToyRobot::RobotController.new(
+        ToyRobot::Controller.new(
           robot: robot,
           view: view
         )
