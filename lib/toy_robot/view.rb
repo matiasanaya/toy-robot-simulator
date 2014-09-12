@@ -1,22 +1,20 @@
 module ToyRobot
-  View = Struct.new(:args) do
+  class View
+    def initialize(args)
+      @robot = args[:robot]
+      @output = args[:output] || $stdout
+    end
+
     def report
-      report = robot.report
-      output.puts report_string(report) if report
+      output.puts format_report(robot.report)
     end
 
     private
 
-    def report_string(report)
-      "#{report[:x]},#{report[:y]},#{report[:orientation].upcase}"
-    end
+    attr_reader :robot, :output
 
-    def robot
-      args[:robot]
-    end
-
-    def output
-      args[:output] || $stdout
+    def format_report(report)
+      "#{report[:x]},#{report[:y]},#{report[:orientation].upcase}" if report
     end
   end
 end
