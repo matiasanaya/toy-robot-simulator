@@ -1,6 +1,5 @@
 require_relative 'robot_controller'
 require_relative 'robot'
-require_relative 'placement'
 require_relative 'board'
 require_relative 'pose'
 require_relative 'view'
@@ -48,22 +47,10 @@ module ToyRobot
       module_function
 
       def create(opts = {})
-        placement = opts[:placement] || PlacementFactory.create
-
-        ToyRobot::Robot.new(
-          placement: placement
-        )
-      end
-    end
-
-    module PlacementFactory
-      module_function
-
-      def create(opts = {})
         board = opts[:board] || BoardFactory.create
         pose = opts[:pose] || ToyRobot::Pose.new
 
-        ToyRobot::Placement.new(
+        ToyRobot::Robot.new(
           board: board,
           pose: pose
         )

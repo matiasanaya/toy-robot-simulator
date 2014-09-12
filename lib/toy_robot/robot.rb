@@ -1,35 +1,37 @@
 module ToyRobot
   class Robot
     def initialize(args)
-      @placement = args[:placement]
+      @board = args[:board]
+      @pose = args[:pose]
     end
 
-    def place(*args)
-      placement.update(*args)
+    def place(a_new_pose)
+      self.pose = a_new_pose if board.valid_pose?(a_new_pose)
     end
 
     def move
-      with_placement { placement.advance }
+      with_placement { place(pose.adjacent) }
     end
 
     def right
-      with_placement { placement.rotate(90) }
+      with_placement { pose.rotate!(90) }
     end
 
     def left
-      with_placement { placement.rotate(-90) }
+      with_placement { pose.rotate!(-90) }
     end
 
     def report
-      with_placement { placement.report }
+      with_placement { pose.report }
     end
 
     private
 
-    attr_accessor :placement
+    attr_reader :board
+    attr_accessor :pose
 
     def with_placement
-      yield if placement.on_board?
+      yield if board && board.valid_pose?(pose)
     end
   end
 end
