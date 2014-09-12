@@ -1,9 +1,5 @@
-require 'forwardable'
-
 module ToyRobot
   class Robot
-    extend Forwardable
-
     def initialize(args)
       @placement = args[:placement]
     end
