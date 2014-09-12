@@ -223,10 +223,6 @@ ToyRobot::Robot
 ```
 
 ```ruby
-ToyRobot::Placement
-```
-
-```ruby
 ToyRobot::Pose
 ```
 
