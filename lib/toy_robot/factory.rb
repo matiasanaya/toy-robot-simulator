@@ -62,6 +62,7 @@ module ToyRobot
       def create(opts = {})
         board = opts[:board] || BoardFactory.create
         pose = opts[:pose] || ToyRobot::Pose.new
+
         ToyRobot::Placement.new(
           board: board,
           pose: pose
