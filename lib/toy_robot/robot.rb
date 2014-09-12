@@ -29,9 +29,7 @@ module ToyRobot
     attr_accessor :placement
 
     def with_placement
-      if placement.on_board?
-        yield
-      end
+      yield if placement.on_board?
     end
   end
 end
