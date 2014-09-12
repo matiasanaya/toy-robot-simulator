@@ -70,9 +70,9 @@ module ToyRobot
     def update!(coordinate, by)
       case coordinate
       when :x
-        self.x = x + by
+        self.x += by
       when :y
-        self.y = y + by
+        self.y += by
       end
     end
   end
