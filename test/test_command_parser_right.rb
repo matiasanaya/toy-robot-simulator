@@ -8,7 +8,7 @@ module ToyRobot
 
     def setup
       @object = Command::Parser::Right
-      @object_token = Command::Token::RIGHT
+      @object_msg = :right
       @object_valid_str = 'RIGHT'
       @object_invalid_strs = [
         'RIGHT ',

@@ -28,7 +28,7 @@ module ToyRobot
       end
 
       Place = Base.new(
-        token: Command::Token::PLACE,
+        msg: :place,
         regex: /\APLACE \d+,\d+,(NORTH|SOUTH|EAST|WEST)\z/,
         args_extractor: place_args_extractor
       )

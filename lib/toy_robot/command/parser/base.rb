@@ -1,4 +1,3 @@
-require_relative '../token'
 require_relative '../base'
 
 module ToyRobot
@@ -7,7 +6,7 @@ module ToyRobot
       class Base
         def initialize(args)
           @regex = args[:regex]
-          @token = args[:token]
+          @msg = args[:msg]
           @args_extractor = args[:args_extractor]
         end
 
@@ -17,7 +16,7 @@ module ToyRobot
 
         private
 
-        attr_reader :regex, :token, :args_extractor
+        attr_reader :regex, :msg, :args_extractor
 
         def match?(string)
           string =~ regex
@@ -30,27 +29,27 @@ module ToyRobot
         end
 
         def build_command(string)
-          Command::Base.new(token, extract_args(string)) if match?(string)
+          Command::Base.new(msg, extract_args(string)) if match?(string)
         end
       end
 
       Move = Base.new(
-        token: Command::Token::MOVE,
+        msg: :move,
         regex: /\AMOVE\z/
       )
 
       Right = Base.new(
-        token: Command::Token::RIGHT,
+        msg: :right,
         regex: /\ARIGHT\z/
       )
 
       Left = Base.new(
-        token: Command::Token::LEFT,
+        msg: :left,
         regex: /\ALEFT\z/
       )
 
       Report = Base.new(
-        token: Command::Token::REPORT,
+        msg: :report,
         regex: /\AREPORT\z/
       )
     end

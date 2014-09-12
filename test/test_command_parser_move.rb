@@ -8,7 +8,7 @@ module ToyRobot
 
     def setup
       @object = Command::Parser::Move
-      @object_token = Command::Token::MOVE
+      @object_msg = :move
       @object_valid_str = 'MOVE'
       @object_invalid_strs = [
         'MOVE ',

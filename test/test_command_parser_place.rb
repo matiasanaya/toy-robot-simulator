@@ -8,7 +8,7 @@ module ToyRobot
 
     def setup
       @object = Command::Parser::Place
-      @object_token = Command::Token::PLACE
+      @object_msg = :place
       @object_valid_str = 'PLACE 0,0,NORTH'
       @object_invalid_strs = [
         'PLACE',

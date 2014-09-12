@@ -14,9 +14,9 @@ module ToyRobot
       end
     end
 
-    def test_that_response_knows_token
-      assert_equal @object_token,
-                   @object.build_with_match(@object_valid_str).token
+    def test_that_response_knows_msg
+      assert_equal @object_msg,
+                   @object.build_with_match(@object_valid_str).msg
     end
 
     def test_that_response_knows_args

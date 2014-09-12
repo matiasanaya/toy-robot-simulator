@@ -8,7 +8,7 @@ module ToyRobot
 
     def setup
       @object = Command::Parser::Report
-      @object_token = Command::Token::REPORT
+      @object_msg = :report
       @object_valid_str = 'REPORT'
       @object_invalid_strs = [
         'REPORT ',

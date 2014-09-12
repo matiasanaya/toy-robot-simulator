@@ -15,7 +15,7 @@ module ToyRobot
         break unless raw_input
         raw_input.chomp!
         command = parser.parse(raw_input)
-        controller.send(command.token, command.args) if command
+        controller.send(command.msg, command.args) if command
       end
     end
 
