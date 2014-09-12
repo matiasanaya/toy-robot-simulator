@@ -1,10 +1,10 @@
 require_relative '../lib/toy_robot/command/parser/place'
-require_relative 'test_command_matcher_interface'
+require_relative 'test_command_parser_interface'
 require 'minitest/autorun'
 
 module ToyRobot
-  class CommandMatcherPlaceTest < MiniTest::Unit::TestCase
-    include CommandMatcherInterfaceTest
+  class CommandParserPlaceTest < MiniTest::Unit::TestCase
+    include CommandParserInterfaceTest
 
     def setup
       @object = Command::Parser::Place

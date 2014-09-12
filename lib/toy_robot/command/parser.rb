@@ -5,8 +5,8 @@ module ToyRobot
   module Command
     module Parser
       def self.parse(string)
-        all.each do |matcher|
-          command = matcher.build_with_match(string)
+        all.each do |parser|
+          command = parser.build_with_match(string)
           return command if command
         end
         nil

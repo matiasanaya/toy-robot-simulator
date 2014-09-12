@@ -2,21 +2,21 @@ require_relative '../lib/toy_robot/command/parser'
 require 'minitest/autorun'
 
 module ToyRobot
-  class CommandMatcherTest < MiniTest::Unit::TestCase
+  class CommandParserTest < MiniTest::Unit::TestCase
     def setup
-      @matcher = Command::Parser
+      @parser = Command::Parser
     end
 
     def test_that_it_can_parse
-      refute_equal nil, @matcher.parse('PLACE 0,0,NORTH')
+      refute_equal nil, @parser.parse('PLACE 0,0,NORTH')
     end
 
     def test_that_parsing_can_fail
-      assert_equal nil, @matcher.parse('PLACE 0,0,NORTHISH')
+      assert_equal nil, @parser.parse('PLACE 0,0,NORTHISH')
     end
 
-    def test_that_it_knows_all_matchers
-      all = @matcher.all
+    def test_that_it_knows_all_parsers
+      all = @parser.all
 
       assert_includes all, Command::Parser::Place
 

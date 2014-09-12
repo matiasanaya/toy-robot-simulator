@@ -1,6 +1,6 @@
 module ToyRobot
-  module CommandMatcherInterfaceTest
-    def test_it_implement_the_command_matcher_interface
+  module CommandParserInterfaceTest
+    def test_it_implement_the_command_parser_interface
       assert_respond_to @object, :build_with_match
     end
 
