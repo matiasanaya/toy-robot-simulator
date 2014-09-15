@@ -1,9 +1,14 @@
 require_relative '../lib/toy_robot/pose'
+require_relative 'test_pose_interface'
+require_relative 'test_poser_interface'
 require_relative 'test_reporter_interface'
+
 require 'minitest/autorun'
 
 module ToyRobot
   class PoseTest < MiniTest::Unit::TestCase
+    include PoseInterfaceTest
+    include PoserInterfaceTest
     include ReporterInterfaceTest
 
     def setup
@@ -16,25 +21,18 @@ module ToyRobot
       )
     end
 
-    def test_public_interface
-      assert_respond_to @pose, :adjacent
-      assert_respond_to @pose, :rotate!
-      assert_respond_to @pose, :report
-      assert_respond_to @pose, :x
-      assert_respond_to @pose, :y
-      assert_respond_to @pose, :orientation
-    end
-
     def test_it_can_be_initialized_without_arguments
       assert Pose.new
     end
 
-    def test_that_adjacent_returns_a_pose
-      assert_instance_of Pose, @pose.adjacent
-    end
+    def test_that_it_can_mutate
+      mutated_pose_attrs = {
+        x: 5,
+        y: 5,
+        orientation: 'random'
+      }
 
-    def test_that_adjacent_pose_is_not_the_reciever
-      refute_equal @pose, @pose.adjacent
+      assert_pose mutated_pose_attrs, @pose.mutate!(mutated_pose_attrs)
     end
 
     def test_that_knows_adjacent_when_facing_east
@@ -123,18 +121,6 @@ module ToyRobot
 
         assert_pose rotated_pose_hash, @pose
       end
-    end
-
-    def test_that_it_reports_x
-      assert_includes @pose.report, :x
-    end
-
-    def test_that_it_reports_y
-      assert_includes @pose.report, :y
-    end
-
-    def test_that_it_reports_orientation
-      assert_includes @pose.report, :orientation
     end
 
     def assert_pose(expected_pose_hash, actual)

@@ -1,3 +1,5 @@
+require 'ostruct'
+
 module ToyRobot
   class Pose
     module Orientation
@@ -15,6 +17,14 @@ module ToyRobot
       @orientation = args[:orientation]
     end
 
+    def mutate!(attrs = {})
+      pose_like = attrs.instance_of?(Hash) ? OpenStruct.new(attrs) : attrs
+      self.x = pose_like.x || x
+      self.y = pose_like.y || y
+      self.orientation = pose_like.orientation || orientation
+      self
+    end
+
     def adjacent
       dup.send(:adjacent!)
     end
@@ -22,6 +32,7 @@ module ToyRobot
     def rotate!(degrees)
       step = (degrees % 90) + (degrees/degrees.abs)
       self.orientation = step_orientation(step)
+      self
     end
 
     def report
@@ -60,14 +71,14 @@ module ToyRobot
     end
 
     def increment!(coordinate, by = 1)
-      update!(coordinate, by)
+      update_coordinate!(coordinate, by)
     end
 
     def decrement!(coordinate, by = -1)
-      update!(coordinate, by)
+      update_coordinate!(coordinate, by)
     end
 
-    def update!(coordinate, by)
+    def update_coordinate!(coordinate, by)
       case coordinate
       when :x
         self.x += by
