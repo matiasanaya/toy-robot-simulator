@@ -25,32 +25,32 @@ module ToyRobot
 
     def test_that_response_args_know_x
       assert_equal 123,
-                   @object.build_with_match('PLACE 123,0,NORTH').args.x
+                   @object.build_with_match('PLACE 123,0,NORTH').args[:x]
     end
 
     def test_that_response_args_know_y
       assert_equal 123,
-                   @object.build_with_match('PLACE 0,123,NORTH').args.y
+                   @object.build_with_match('PLACE 0,123,NORTH').args[:y]
     end
 
     def test_that_response_args_knows_north_orientation
       assert_equal Pose::Orientation::NORTH,
-                   @object.build_with_match('PLACE 0,123,NORTH').args.orientation
+                   @object.build_with_match('PLACE 0,123,NORTH').args[:orientation]
     end
 
     def test_that_response_args_knows_south_orientation
       assert_equal Pose::Orientation::SOUTH,
-                   @object.build_with_match('PLACE 0,123,SOUTH').args.orientation
+                   @object.build_with_match('PLACE 0,123,SOUTH').args[:orientation]
     end
 
     def test_that_response_args_knows_east_orientation
       assert_equal Pose::Orientation::EAST,
-                   @object.build_with_match('PLACE 0,123,EAST').args.orientation
+                   @object.build_with_match('PLACE 0,123,EAST').args[:orientation]
     end
 
     def test_that_response_args_knows_west_orientation
       assert_equal Pose::Orientation::WEST,
-                   @object.build_with_match('PLACE 0,123,WEST').args.orientation
+                   @object.build_with_match('PLACE 0,123,WEST').args[:orientation]
     end
   end
 end
