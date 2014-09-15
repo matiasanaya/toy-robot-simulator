@@ -1,4 +1,4 @@
-require_relative '../base'
+require 'ostruct'
 
 module ToyRobot
   module Command
@@ -29,7 +29,7 @@ module ToyRobot
         end
 
         def build_command(string)
-          Command::Base.new(msg, extract_args(string)) if match?(string)
+          OpenStruct.new(msg: msg, args:extract_args(string)) if match?(string)
         end
       end
 
