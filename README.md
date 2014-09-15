@@ -260,6 +260,46 @@ The results is that most of the files/classes/modules/methods/lines in the sourc
 
 In the end I tried my best to keep it simple while applying some OOD, but couldn't help feeling like the person to whom 'every problem seems like a nail'.
 
+### The Bad Parts
+
+#### Code
+
+##### `Command::Parser#parse`
+
+This method/module has too many hidden dependancy to work (aka magic) and is not clear enough how you would add more parsers to it.
+
+The parser is intended to be extedned by adding constants to the `Command::Parser` name space, and each constant should be an instance of the Command::Parser::Base class. This is not self evident and thus bad.
+
+On the other hand, these constants need to be require by the application, which either means including them in the `/lib/toy_robot/command/parser.rb` or having a automatic loading of files under the `lib/toy_robot` directory.
+
+##### `Pose::Orientation`
+
+```ruby
+EAST = :east
+NORTH = :north
+WEST = :west
+SOUTH = :south
+```
+These constants seem unnecessary for a small lib and a straight-forward concept.
+
+##### `Pose#rotate!`
+
+This method takes `(degrees)` as arguments which makes sense from a physical perspective, but none in the context of this application. Input comes in in the form of four strings, which are the only valid states for `@orientation`. The whole application is converting back and forth between degrees and valid orientations. This complexity is not neccesary.
+
+On the flip side, converting the whole application to degrees would make `#rotate!` much simpler.
+
+A choice should be made here and be implemented application wide.
+
+#### Naming
+
+`Command::Parser::Base` and its instances should be more specific. Maybe `Command::Parser::BaseMatcher`.
+
+#### Testing
+
+`ToyRobot::Application` is only integration tested.
+
+`bin/toyrobot` is not tested.
+
 ## Contributing
 
 View [CONTRIBUTING.md](https://github.com/matiasanaya/toy-robot-simulator/blob/master/CONTRIBUTING.md)
