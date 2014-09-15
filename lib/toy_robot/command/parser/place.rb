@@ -1,5 +1,4 @@
 require_relative 'base'
-require_relative '../../pose'
 
 module ToyRobot
   module Command
@@ -20,11 +19,11 @@ module ToyRobot
       place_args_extractor = lambda do |raw_command|
         x, y, f = raw_command.split.pop.split(',')
 
-        Pose.new(
+        {
           x: x.to_i,
           y: y.to_i,
           orientation: constantize_orientation.call(f)
-        )
+        }
       end
 
       Place = Base.new(
