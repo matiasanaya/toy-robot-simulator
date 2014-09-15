@@ -6,19 +6,20 @@ module ToyRobot
     end
 
     def place(a_new_pose)
-      self.pose = a_new_pose if board.valid_pose?(a_new_pose)
+      pose.mutate!(a_new_pose) if board.valid_pose?(a_new_pose)
+      nil
     end
 
     def move
-      with_placement { place(pose.adjacent) }
+      with_placement { place(pose.adjacent) and nil }
     end
 
     def right
-      with_placement { pose.rotate!(90) }
+      with_placement { pose.rotate!(90) and nil }
     end
 
     def left
-      with_placement { pose.rotate!(-90) }
+      with_placement { pose.rotate!(-90) and nil }
     end
 
     def report
@@ -27,8 +28,7 @@ module ToyRobot
 
     private
 
-    attr_reader :board
-    attr_accessor :pose
+    attr_reader :board, :pose
 
     def with_placement
       yield if board && board.valid_pose?(pose)
