@@ -6,7 +6,7 @@ module ToyRobot
     end
 
     def valid_pose?(pose)
-      pose && (0..x_size).include?(pose.x) && (0..y_size).include?(pose.y)
+      pose && (0..x_size).include?(pose[:x]) && (0..y_size).include?(pose[:y])
     end
 
     private

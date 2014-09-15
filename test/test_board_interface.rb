@@ -1,5 +1,3 @@
-require_relative 'poser_double'
-
 module ToyRobot
   module BoardInterfaceTest
     def test_board_public_interface
@@ -11,7 +9,7 @@ module ToyRobot
     end
 
     def test_that_valid_pose_returns_true_or_false
-      assert_includes [true, false], @object.valid_pose?(PoserDouble.new)
+      assert_includes [true, false], @object.valid_pose?({})
     end
   end
 end
