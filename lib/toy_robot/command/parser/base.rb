@@ -32,26 +32,6 @@ module ToyRobot
           OpenStruct.new(msg: msg, args:extract_args(string)) if match?(string)
         end
       end
-
-      Move = Base.new(
-        msg: :move,
-        regex: /\AMOVE\z/
-      )
-
-      Right = Base.new(
-        msg: :right,
-        regex: /\ARIGHT\z/
-      )
-
-      Left = Base.new(
-        msg: :left,
-        regex: /\ALEFT\z/
-      )
-
-      Report = Base.new(
-        msg: :report,
-        regex: /\AREPORT\z/
-      )
     end
   end
 end

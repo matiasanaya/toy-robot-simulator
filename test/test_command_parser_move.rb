@@ -1,4 +1,4 @@
-require_relative '../lib/toy_robot/command/parser/base'
+require_relative '../lib/toy_robot/command/parser/move'
 require_relative 'test_command_parser_interface'
 require 'minitest/autorun'
 

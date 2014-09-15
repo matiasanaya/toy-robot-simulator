@@ -1,5 +1,8 @@
-require_relative 'parser/base'
 require_relative 'parser/place'
+require_relative 'parser/move'
+require_relative 'parser/right'
+require_relative 'parser/left'
+require_relative 'parser/report'
 
 module ToyRobot
   module Command
