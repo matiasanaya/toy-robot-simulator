@@ -89,7 +89,7 @@ Response:
 * The application does not provide any graphical output showing the movement of the toy robot.
 
 
-## Dependancies
+## Dependencies
 
     ruby version ~> 2.1.0p0
 
@@ -106,7 +106,7 @@ To learn how to install ruby visit [ruby-lang.org/en/installation/](https://www.
 
  * OSX 10.8.5, ruby 2.1.2p95
 
-Development dependancies:
+Development dependencies:
 
     rake ~> 10.3
     minitest ~> 4.7.5
@@ -252,27 +252,25 @@ After all the commands are read, parsed and executed, the application exits.
 
 ## Discussion
 
-This piece of software is over-engineered.
+Over-engineered. On the one hand it attempts to solve a static, straight-forward problem. On the other hand it tries to demonstrate coding and object-oriented design skills. This generates tensions which I feel are incompatible and creep into the code base.
 
-On the one hand it attempts to solve a static, straight-forward problem. On the other hand it tries to demonstrate coding and object-oriented design skills. OOD is aimed at problems that need to change. By definition, this exercise will not need to change. This generates tensions which I feel are incompatible and creep into the code base.
+Most of the files/classes/modules/methods/lines in the source code are sensible to the argument that they are overkill for the problem in question.
 
-The results is that most of the files/classes/modules/methods/lines in the source code are sensible to the argument that they are overkill for the problem in question.
+In the end I tried to keep it simple and apply OOD, while feeling like the person to whom 'every problem seems like a nail'.
 
-In the end I tried my best to keep it simple while applying some OOD, but couldn't help feeling like the person to whom 'every problem seems like a nail'.
-
-### The Bad Parts
+### The Not So Good Parts
 
 #### Code
 
 ##### `Command::Parser#parse`
 
-This method/module has too many hidden dependancy to work (aka magic) and is not clear enough how you would add more parsers to it.
+This method/module has too many hidden dependency to work (aka magic) and is not clear enough how you would add more parsers to it.
 
-The parser is intended to be extedned by adding constants to the `Command::Parser` name space, and each constant should be an instance of the Command::Parser::Base class. This is not self evident and thus bad.
+The parser is intended to be extended by adding constants to the `Command::Parser` name space, and each constant should be an instance of the Command::Parser::Base class. This is not self evident and thus bad.
 
 On the other hand, these constants need to be require by the application, which either means including them in the `/lib/toy_robot/command/parser.rb` or having a automatic loading of files under the `lib/toy_robot` directory.
 
-##### `Pose::Orientation`
+##### `Pose`
 
 ```ruby
 EAST = :east
@@ -280,19 +278,20 @@ NORTH = :north
 WEST = :west
 SOUTH = :south
 ```
-These constants seem unnecessary for a small lib and a straight-forward concept.
 
-##### `Pose#rotate!`
+These constants seem unnecessary for a small lib and a straight-forward concept. Maybe integer would suffice and make calculations easier.
 
-This method takes `(degrees)` as arguments which makes sense from a physical perspective, but none in the context of this application. Input comes in in the form of four strings, which are the only valid states for `@orientation`. The whole application is converting back and forth between degrees and valid orientations. This complexity is not neccesary.
+```
+Pose#rotate!
+```
+
+This method takes `(degrees)` as arguments which makes sense from a physical perspective, but none in the context of this application. Input comes in the form of four strings, which are the only valid states for `@orientation`. The whole application is converting back and forth between degrees and valid orientations. This complexity is not necessary.
 
 On the flip side, converting the whole application to degrees would make `#rotate!` much simpler.
 
-A choice should be made here and be implemented application wide.
-
 #### Naming
 
-`Command::Parser::Base` and its instances should be more specific. Maybe `Command::Parser::BaseMatcher`.
+`Command::Parser::Base` is not specific, maybe `Command::Parser::BaseMatcher` would be better.
 
 #### Testing
 

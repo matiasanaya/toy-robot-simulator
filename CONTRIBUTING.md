@@ -4,7 +4,7 @@ Fork, then clone the repo:
 
     git clone git@github.com:your-username/toy-robot-simulator.git
 
-Check you ruby and development dependancies versions:
+Check you ruby and development dependencies versions:
 
     $ ruby -v
 
@@ -18,7 +18,7 @@ Make your change. Add tests for your change. Make the tests pass:
 
     rake test:all
 
-Push to your fork and submit a pull request. Some things that are equal parts necesary/epic:
+Push to your fork and submit a pull request. Some things that are equal parts necessary/epic:
 
  * Write tests.
 
