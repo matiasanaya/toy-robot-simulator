@@ -1,6 +1,5 @@
 require_relative '../lib/toy_robot/pose'
 require_relative 'test_pose_interface'
-require_relative 'test_poser_interface'
 require_relative 'test_reporter_interface'
 
 require 'minitest/autorun'
@@ -8,7 +7,6 @@ require 'minitest/autorun'
 module ToyRobot
   class PoseTest < MiniTest::Unit::TestCase
     include PoseInterfaceTest
-    include PoserInterfaceTest
     include ReporterInterfaceTest
 
     def setup
@@ -121,6 +119,18 @@ module ToyRobot
 
         assert_pose rotated_pose_hash, @pose
       end
+    end
+
+    def test_that_hash_like_access_to_x_returns_instance_variable_x
+      assert_equal @pose.instance_variable_get(:@x), @pose[:x]
+    end
+
+    def test_that_hash_like_access_to_y_returns_instance_variable_y
+      assert_equal @pose.instance_variable_get(:@y), @pose[:y]
+    end
+
+    def test_that_hash_like_access_to_orientation_returns_instance_variable_orientation
+      assert_equal @pose.instance_variable_get(:@orientation), @pose[:orientation]
     end
 
     def assert_pose(expected_pose_hash, actual)

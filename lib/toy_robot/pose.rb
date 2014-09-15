@@ -9,8 +9,6 @@ module ToyRobot
       SOUTH = :south
     end
 
-    attr_accessor :x, :y, :orientation
-
     def initialize(args = {})
       @x = args[:x]
       @y = args[:y]
@@ -18,10 +16,9 @@ module ToyRobot
     end
 
     def mutate!(attrs = {})
-      pose_like = attrs.instance_of?(Hash) ? OpenStruct.new(attrs) : attrs
-      self.x = pose_like.x || x
-      self.y = pose_like.y || y
-      self.orientation = pose_like.orientation || orientation
+      self.x = attrs[:x] || x
+      self.y = attrs[:y] || y
+      self.orientation = attrs[:orientation] || orientation
       self
     end
 
@@ -43,7 +40,13 @@ module ToyRobot
       }
     end
 
+    def [](key)
+      report.send(:[], key)
+    end
+
     private
+
+    attr_accessor :x, :y, :orientation
 
     def step_orientation(by = 1)
       orientations = [
@@ -81,9 +84,9 @@ module ToyRobot
     def update_coordinate!(coordinate, by)
       case coordinate
       when :x
-        self.x += by
+        self.x = x + by
       when :y
-        self.y += by
+        self.y = y + by
       end
     end
   end

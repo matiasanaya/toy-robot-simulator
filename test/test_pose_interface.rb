@@ -4,6 +4,7 @@ module ToyRobot
       assert_respond_to @object, :mutate!
       assert_respond_to @object, :adjacent
       assert_respond_to @object, :rotate!
+      assert_respond_to @object, :[]
     end
 
     def test_that_mutate_returns_the_receiver

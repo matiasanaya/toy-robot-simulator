@@ -18,4 +18,6 @@ class PoseDouble
       orientation: :facing
     }
   end
+
+  def [](_); end;
 end
